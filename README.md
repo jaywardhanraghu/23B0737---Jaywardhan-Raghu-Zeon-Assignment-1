@@ -132,7 +132,7 @@ All 371 ground-truth lids were successfully detected without unmatched predictio
 | Total Predicted Lids | 371 |
 | Matched Lids | 371 |
 
-## Final Results
+## Pipeline Performance
 
 Evaluation was performed on:
 - 70 images
@@ -173,17 +173,19 @@ Evaluation was performed on:
 
 ## Results Analysis
 
-The hybrid method achieved the best overall orientation accuracy among the evaluated approaches.
+The hybrid pipeline achieved the best overall orientation accuracy among the evaluated approaches.
 
 Key observations:
 - Approximately 66.3% of predictions achieved angular errors below 6°.
 - Approximately 89.2% of predictions achieved angular errors below 10°.
-- The hybrid approach reduced high-error outliers compared to standalone ellipse fitting.
+- The hybrid pipeline reduced high-error outliers compared to standalone ellipse fitting.
 - PCA performed more consistently on elongated contours, while ellipse fitting performed better on smoother contours.
 - Combining both methods improved robustness across varying lid geometries and image conditions.
 - Center prediction errors remained low, indicating stable spatial localization performance.
 
 While the system achieved strong prototype-level performance, the angular error distribution still contains a small number of higher-error outliers, indicating that additional robustness improvements would be required for production-grade laboratory automation systems with extremely tight mechanical tolerances.
+
+Overall, the proposed hybrid approach demonstrated strong orientation estimation performance while maintaining stable lid localization accuracy across diverse image conditions.
 
 ## Repository Structure
 

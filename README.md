@@ -125,10 +125,15 @@ Evaluation was performed on:
 
 ```text
 ├── notebooks/
-│   └── Zeon_w_True_Hybrid.ipynb
+│   ├── experimentation.ipynb
+│   └── Final_Method_Demo.ipynb
 │
-├── overlays/
-│   └── overlay prediction examples
+├── images/
+│   ├── originals/
+│   │   └── original input images
+│   │
+│   └── overlays/
+│       └── final overlay predictions
 │
 ├── results/
 │   ├── final_true_hybrid_predictions.csv

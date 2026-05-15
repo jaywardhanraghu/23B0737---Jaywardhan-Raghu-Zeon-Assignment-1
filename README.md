@@ -100,6 +100,10 @@ The green contour represents the segmented lid boundary, while the red arrow ind
 | Original Image | Overlay Prediction |
 |---|---|
 | ![](images/originals/46374b36-color.png) | ![](images/overlays/46374b36-color.png) |
+| ![](images/originals/e8063e46-color.png) | ![](images/overlays/e8063e46-color.png) |
+| ![](images/originals/5f430915-color.png) | ![](images/overlays/5f430915-color.png) |
+| ![](images/originals/a67a8b64-color.png) | ![](images/overlays/a67a8b64-color.png) |
+| ![](images/originals/fc1715f8-color.png) | ![](images/overlays/fc1715f8-color.png) |
 
 ## Evaluation Methodology
 
@@ -167,6 +171,20 @@ Evaluation was performed on:
 
 ![Center Error Histogram](plots/center_error_histogram.png)
 
+## Results Analysis
+
+The hybrid method achieved the best overall orientation accuracy among the evaluated approaches.
+
+Key observations:
+- Approximately 66.3% of predictions achieved angular errors below 6°.
+- Approximately 89.2% of predictions achieved angular errors below 10°.
+- The hybrid approach reduced high-error outliers compared to standalone ellipse fitting.
+- PCA performed more consistently on elongated contours, while ellipse fitting performed better on smoother contours.
+- Combining both methods improved robustness across varying lid geometries and image conditions.
+- Center prediction errors remained low, indicating stable spatial localization performance.
+
+While the system achieved strong prototype-level performance, the angular error distribution still contains a small number of higher-error outliers, indicating that additional robustness improvements would be required for production-grade laboratory automation systems with extremely tight mechanical tolerances.
+
 ## Repository Structure
 
 ```text
@@ -210,10 +228,25 @@ To run the notebook:
 3. Replace:
 
 ```python
-API_KEY = "vof93SgrEEFl6QUIp6BI"
+API_KEY = "***********"
 ```
 
 inside the notebook.
+
+## Use of AI Tools
+
+AI-assisted development tools were used during experimentation and debugging.
+
+Roboflow was used for:
+- dataset annotation and management
+- YOLOv11 model training
+- hosted inference APIs
+
+Large language models were additionally used to:
+- assist with debugging
+- refine evaluation pipelines
+
+All final implementation decisions, evaluation methodology, and analysis were independently verified and validated.
 
 ## Future Improvements
 

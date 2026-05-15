@@ -111,11 +111,11 @@ Evaluation was performed on:
 
 ### Angular Error Histogram
 
-![Histogram](plots/error_histogram.png)
+![Histogram](plots/angular_error_histogram.png)
 
 ### Angular Error Box Plot
 
-![Box Plot](plots/error_boxplot.png)
+![Box Plot](plots/angular_error_boxplot.png)
 
 ### Center Distance Distribution
 

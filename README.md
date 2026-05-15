@@ -10,7 +10,7 @@ Given an input image containing one or more lids, the system should:
 - estimate its center coordinates
 - predict its orientation angle
 
-The solution should generalize across varying lid positions, rotations, and image conditions.
+The system should generalize across varying lid positions, rotations, and image conditions.
 
 ## Methodology
 
@@ -32,8 +32,39 @@ A separate YOLOv11 keypoint model was trained to detect hinge and tab locations 
 ### 6. Direction Resolution
 Keypoint vectors were used to resolve the 180° ambiguity inherent in ellipse and PCA major-axis estimation.
 
-### 7. Hybrid Arbitration
+### 7. Hybrid Method Selection
 The final pipeline dynamically selected between ellipse and PCA orientation estimates based on geometric disagreement between the two methods.
+
+## Model Training
+
+Two YOLOv11 models were trained using Roboflow:
+
+- a segmentation model for lid extraction
+- a keypoint detection model for hinge and tab localization
+
+The trained models were used as inputs to the downstream geometric orientation estimation pipeline.
+
+## Model Validation Metrics
+
+The YOLOv11 models achieved strong validation performance during training on Roboflow.
+
+### Segmentation Model
+
+| Metric | Value |
+|---|---|
+| mAP@50 | 99.5% |
+| Precision | 99.7% |
+| Recall | 100% |
+| F1 Score | 99.8% |
+
+### Keypoint Detection Model
+
+| Metric | Value |
+|---|---|
+| mAP@50 | 99.5% |
+| Precision | 100% |
+| Recall | 100% |
+| F1 Score | 100% |
 
 ## Pipeline Overview
 
@@ -82,6 +113,21 @@ where:
 - a = predicted angle
 - b = ground-truth angle
 
+## Detection Performance
+
+Detection performance was evaluated using one-to-one spatial matching between predicted lid centers and ground-truth annotations.
+
+All 371 ground-truth lids were successfully detected without unmatched predictions.
+
+| Metric | Value |
+|---|---|
+| Precision | 1.00 |
+| Recall | 1.00 |
+| F1 Score | 1.00 |
+| Total Ground Truth Lids | 371 |
+| Total Predicted Lids | 371 |
+| Matched Lids | 371 |
+
 ## Final Results
 
 Evaluation was performed on:
@@ -97,6 +143,7 @@ Evaluation was performed on:
 | Max Angular Error | 23.25° |
 | Mean Center Distance | 1.50 px |
 | Median Center Distance | 1.39 px |
+| Max Center Distance | 4.76 px |
 
 ## Comparison of Orientation Estimation Methods
 
@@ -105,7 +152,6 @@ Evaluation was performed on:
 | Ellipse Fitting | 5.7° | 4.3° | 29.8° |
 | PCA Orientation | 5.36° | 4.4° | 23.25° |
 | True Hybrid Method | 4.98° | 4.0° | 23.25° |
-| Center Distance | 1.5px | 1.39px | 4.76px |
 
 ## Error Distribution
 

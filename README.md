@@ -58,3 +58,26 @@ G --> H
 
 H --> I[Final Orientation Angle]
 ```
+
+```mermaid
+flowchart TD
+
+A[RGB Image]
+--> B[YOLOv11 Segmentation]
+
+B --> C[Contour Extraction]
+
+C --> D[Ellipse Fitting]
+C --> E[PCA Orientation]
+
+B --> F[YOLOv11 Keypoint Detection]
+
+F --> G[Hinge-Tab Direction Vector]
+
+D --> H[Direction Resolution]
+E --> H
+
+H --> I[Hybrid Method Selection]
+
+I --> J[Final Orientation Angle]
+```

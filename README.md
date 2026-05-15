@@ -92,8 +92,8 @@ Evaluation was performed on:
 
 | Metric | Value |
 |---|---|
-| Mean Angular Error | 4.99° |
-| Median Angular Error | 4.01° |
+| Mean Angular Error | 4.98° |
+| Median Angular Error | 4.0° |
 | Max Angular Error | 23.25° |
 | Mean Center Distance | 1.50 px |
 | Median Center Distance | 1.39 px |
@@ -103,8 +103,8 @@ Evaluation was performed on:
 | Method | Mean Error | Median Error | Max Error |
 |---|---|---|---|
 | Ellipse Fitting | 5.7° | 4.3° | 29.8° |
-| PCA Orientation | 5.36° | 4.4° | 23.7° |
-| True Hybrid Method | 4.98° | 4.0° | 23.7° |
+| PCA Orientation | 5.36° | 4.4° | 23.25° |
+| True Hybrid Method | 4.98° | 4.0° | 23.25° |
 | Center Distance | 1.5px | 1.39px | 4.76px |
 
 ## Error Distribution

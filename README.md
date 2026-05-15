@@ -68,7 +68,7 @@ The green contour represents the segmented lid boundary, while the red arrow ind
 
 | Original Image | Overlay Prediction |
 |---|---|
-| ![](examples/original_1.png) | ![](overlays/example_1.png) |
+| ![](originals/46374b36-color.png) | ![](overlays/46374b36-color.png) |
 
 ## Evaluation Methodology
 

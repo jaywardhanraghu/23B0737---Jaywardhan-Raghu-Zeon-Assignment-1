@@ -33,7 +33,14 @@ A separate YOLOv11 keypoint model was trained to detect hinge and tab locations 
 Keypoint vectors were used to resolve the 180° ambiguity inherent in ellipse and PCA major-axis estimation.
 
 ### 7. Hybrid Method Selection
-The final pipeline dynamically selected between ellipse and PCA orientation estimates based on geometric disagreement between the two methods.
+The pipeline dynamically switches between orientation estimators based on geometric consensus to exploit the unique strengths of each mathematical approach:
+
+* **Ellipse Fitting (High-Precision/Low-Robustness):** Highly accurate for perfectly segmented, smooth contours—driving down errors into the absolute minimum bins ($0^{\circ}-4^{\circ}$), but highly susceptible to noise, leading to a long error tail (Max Error: $29.8^{\circ}$).
+* **PCA Orientation (High-Robustness/Moderate-Precision):** More consistent overall, tightly bounding the error profile within a reliable $<10^{\circ}$ window, but less capable of sub-$2^{\circ}$ micro-accuracy.
+
+**Selection Logic:** If the absolute angular delta between the Ellipse and PCA estimates is within a tightly bound threshold ($\le 10^{\circ}$), the contour is considered structurally sound, and the high-precision **Ellipse method** is selected. 
+
+If the disagreement exceeds $10^{\circ}$, it signifies a degraded or asymmetrical contour where Ellipse fitting breaks down. In these high-disagreement cases, the pipeline falls back to the more reliable **PCA method**, effectively capping the system's maximum outlier error at $23.25^{\circ}$ instead of allowing it to drift to $29.8^{\circ}$.
 
 ## Model Training
 

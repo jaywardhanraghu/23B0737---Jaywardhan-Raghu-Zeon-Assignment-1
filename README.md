@@ -33,10 +33,11 @@ A separate YOLOv11 keypoint model was trained to detect hinge and tab locations 
 Keypoint vectors were used to resolve the 180° ambiguity inherent in ellipse and PCA major-axis estimation.
 
 ### 7. Hybrid Method Selection
-The pipeline dynamically switches between orientation estimators based on geometric consensus to exploit the unique strengths of each mathematical approach:
+The pipeline dynamically switches between orientation estimators based on geometric consensus to leverage the unique strengths of each mathematical approach:
+- **Ellipse Fitting (High-Precision / Low-Robustness):** Highly accurate for clean, perfectly segmented contours—driving down errors into the absolute minimum bins (0° to 4°), but highly susceptible to minor contour noise, which can cause large localized failures (Max Error: 29.8°).
+- **PCA Orientation (High-Robustness / Moderate-Precision):** Highly consistent across all samples by capturing global shape trends, tightly bounding errors within a reliable < 10° window, but less capable of micro-accuracy under 2°.
 
-* **Ellipse Fitting (High-Precision/Low-Robustness):** Highly accurate for perfectly segmented, smooth contours—driving down errors into the absolute minimum bins ($0^{\circ}-4^{\circ}$), but highly susceptible to noise, leading to a long error tail (Max Error: $29.8^{\circ}$).
-* **PCA Orientation (High-Robustness/Moderate-Precision):** More consistent overall, tightly bounding the error profile within a reliable $<10^{\circ}$ window, but less capable of sub-$2^{\circ}$ micro-accuracy.
+**Selection Rule:** If the absolute angular delta between the Ellipse and PCA estimates is within a tightly bound consensus threshold (<= 10°), the contour is considered structurally clean, and the high-precision **Ellipse method** is prioritized. If the disagreement exceeds 10°, it signifies a degraded, asymmetrical, or noisy contour; the pipeline then defaults to the stable **PCA method**, capping the system's outlier risk.
 
 **Selection Logic:** If the absolute angular delta between the Ellipse and PCA estimates is within a tightly bound threshold ($\le 10^{\circ}$), the contour is considered structurally sound, and the high-precision **Ellipse method** is selected. 
 

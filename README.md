@@ -193,13 +193,16 @@ While the system achieved strong prototype-level performance, the angular error 
 
 Overall, the proposed hybrid approach demonstrated strong orientation estimation performance while maintaining stable lid localization accuracy across diverse image conditions.
 
+## Results Analysis
+
 The hybrid pipeline achieved a mean angular error of 4.98° and median of 4.0° across 371 lids, outperforming both standalone methods.
+
 Key observations:
 
-The hybrid IQR is tighter than both standalone methods, meaning the pipeline is more consistent through the middle of the distribution, not just better at the extremes — this is the direct effect of the consensus-based selection rule routing noisy contours to PCA and clean contours to ellipse fitting.
-The error tail from 10°–23° decays gradually with no secondary cluster, which confirms the 180° ambiguity resolution is working correctly on every prediction — a keypoint failure would produce a second peak near 90° or 180°, which is absent.
-The remaining ~10.8% of high-error predictions are most likely lids with nearly circular contours, where eccentricity approaches zero and both ellipse and PCA lose sensitivity to the true major axis — small segmentation noise then rotates the estimate significantly. This is a fundamental geometric limitation, not a pipeline failure.
-Centre distance histogram peaks at 1.0–1.5px rather than 0–0.5px, suggesting a small systematic offset from mask boundary quantization at 640×480 resolution — practically negligible at 1.50px mean but worth addressing for higher-precision applications.
+- The hybrid IQR is tighter than both standalone methods, meaning the pipeline is more consistent through the middle of the distribution, not just better at the extremes — this is the direct effect of the consensus-based selection rule routing noisy contours to PCA and clean contours to ellipse fitting.
+- The error tail from 10°–23° decays gradually with no secondary cluster, which confirms the 180° ambiguity resolution is working correctly on every prediction — a keypoint failure would produce a second peak near 90° or 180°, which is absent.
+- The remaining ~10.8% of high-error predictions are most likely lids with nearly circular contours, where eccentricity approaches zero and both ellipse and PCA lose sensitivity to the true major axis — small segmentation noise then rotates the estimate significantly. This is a fundamental geometric limitation, not a pipeline failure.
+- Centre distance histogram peaks at 1.0–1.5px rather than 0–0.5px, suggesting a small systematic offset from mask boundary quantization at 640×480 resolution — practically negligible at 1.50px mean but worth addressing for higher-precision applications.
 
 For production-grade deployment with tight mechanical tolerances, the primary improvement needed is better contour precision on near-circular lids, either through higher-resolution segmentation or an additional circularity check that flags low-confidence predictions before they reach the orientation estimator.
 

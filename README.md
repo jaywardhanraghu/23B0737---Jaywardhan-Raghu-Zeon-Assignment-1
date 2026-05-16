@@ -234,6 +234,32 @@ This repository is optimized for rapid evaluation. You can verify the pipeline e
 pip install -r requirements.txt
 ```
 
+## Quick Run
+
+Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+Run inference on an image:
+
+```bash
+python main.py --image path/to/image.png
+```
+
+Example:
+
+```bash
+python main.py --image images/originals/6f323235-color.png
+```
+
+The pipeline will:
+- detect lids
+- estimate orientations
+- generate overlay visualization
+- save output image locally
+
 ## Use of AI Tools
 
 AI-assisted development tools were used during experimentation and debugging.

@@ -179,22 +179,6 @@ Evaluation was performed on:
 
 ## Results Analysis
 
-The hybrid pipeline achieved the best overall orientation accuracy among the evaluated approaches.
-
-Key observations:
-- Approximately 66.3% of predictions achieved angular errors below 6°.
-- Approximately 89.2% of predictions achieved angular errors below 10°.
-- The hybrid pipeline reduced high-error outliers compared to standalone ellipse fitting.
-- PCA performed more consistently on elongated contours, while ellipse fitting achieved higher precision on cleaner contours.
-- Combining both methods improved robustness across varying lid geometries and image conditions.
-- Center prediction errors remained low, indicating stable spatial localization performance.
-
-While the system achieved strong prototype-level performance, the angular error distribution still contains a small number of higher-error outliers, indicating that additional robustness improvements would be required for production-grade laboratory automation systems with extremely tight mechanical tolerances.
-
-Overall, the proposed hybrid approach demonstrated strong orientation estimation performance while maintaining stable lid localization accuracy across diverse image conditions.
-
-## Results Analysis
-
 The hybrid pipeline achieved a mean angular error of 4.98° and median of 4.0° across 371 lids, outperforming both standalone methods.
 
 Key observations:

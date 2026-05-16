@@ -1,0 +1,9 @@
+inference-sdk
+opencv-python
+numpy
+matplotlib
+pandas
+scikit-learn
+scipy
+Pillow
+supervision

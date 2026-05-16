@@ -223,26 +223,16 @@ Overall, the proposed hybrid approach demonstrated strong orientation estimation
 └── requirements.txt
 ```
 
-## Setup
+## Setup & Evaluation Guide
 
-Install dependencies:
+This repository is optimized for rapid evaluation. You can verify the pipeline end-to-end either locally via the Command-Line Interface (CLI) or interactively within a cloud runtime environment.
 
+### Option 1: Local Terminal CLI (Recommended)
+
+**1. Install Dependencies** Initialize your local environment by installing the verified package matrix:
 ```bash
 pip install -r requirements.txt
 ```
-
-This project uses Roboflow-hosted inference APIs.
-
-To run the notebook:
-1. Create a Roboflow account
-2. Obtain an API key
-3. Replace:
-
-```python
-API_KEY = "***********"
-```
-
-inside the notebook.
 
 ## Use of AI Tools
 

@@ -39,8 +39,6 @@ The pipeline dynamically switches between orientation estimators based on geomet
 
 **Selection Rule:** If the absolute angular delta between the Ellipse and PCA estimates is within a tightly bound consensus threshold ($\le 10^{\circ}$), the contour is considered structurally clean, and the high-precision **Ellipse method** is prioritized. If the disagreement exceeds 10°, it signifies a degraded, asymmetrical, or noisy contour; the pipeline then defaults to the stable **PCA method**, capping the system's outlier risk.
 
-**Selection Logic:** If the absolute angular delta between the Ellipse and PCA estimates is within a tightly bound threshold ($\le 10^{\circ}$), the contour is considered structurally sound, and the high-precision **Ellipse method** is selected. 
-
 If the disagreement exceeds $10^{\circ}$, it signifies a degraded or asymmetrical contour where Ellipse fitting breaks down. In these high-disagreement cases, the pipeline falls back to the more reliable **PCA method**, effectively capping the system's maximum outlier error at $23.25^{\circ}$ instead of allowing it to drift to $29.8^{\circ}$.
 
 ## Model Training
@@ -187,7 +185,7 @@ Key observations:
 - Approximately 66.3% of predictions achieved angular errors below 6°.
 - Approximately 89.2% of predictions achieved angular errors below 10°.
 - The hybrid pipeline reduced high-error outliers compared to standalone ellipse fitting.
-- PCA performed more consistently on elongated contours, while ellipse fitting performed better on smoother contours.
+- PCA performed more consistently on elongated contours, while ellipse fitting achieved higher precision on cleaner contours.
 - Combining both methods improved robustness across varying lid geometries and image conditions.
 - Center prediction errors remained low, indicating stable spatial localization performance.
 
@@ -226,13 +224,6 @@ Overall, the proposed hybrid approach demonstrated strong orientation estimation
 ## Setup & Evaluation Guide
 
 This repository is optimized for rapid evaluation. You can verify the pipeline end-to-end either locally via the Command-Line Interface (CLI) or interactively within a cloud runtime environment.
-
-### Option 1: Local Terminal CLI (Recommended)
-
-**1. Install Dependencies** Initialize your local environment by installing the verified package matrix:
-```bash
-pip install -r requirements.txt
-```
 
 ## Quick Run
 
@@ -278,7 +269,7 @@ All final implementation decisions, evaluation methodology, and analysis were in
 ## Future Improvements
 
 - improve contour precision
-- reduce inference nondeterminism
+- improve consistency across repeated inference runs
 - export models for local inference
 - train on larger annotated datasets
 - improve robustness to highly circular contours
